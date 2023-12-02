@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Media Table</title>
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="/log" class="btn btn-primary" id="calculateButton">Home</a>
+            <h1 class="text-center flex-grow-1">Media Table</h1>
+        </div>
+        <form action="/predict" method="post">
+    <div class="form-group">
+        <label for="advertiser" class="nordic-label" style="color:black;">Select Advertiser:</label>
+        <select class="form-control select2" id="advertisers" name="advertiser" onchange="resetv()">
+            {% for i in advertisers %}
+                <option value="{{ i }}" {% if i == advertiser %} selected {% endif %}>{{ i }}</option>
+            {% endfor %}
+        </select>
+    </div>
+        
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Media Type</th>
+                    <th>Media Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+<tr> 
+    <td><label for="tv" class="form-label">TV</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="tvBudget" name="tv" value={{tv}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="media" class="form-label">Print Media</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="printMediaBudget" name="media" value={{media}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="radio" class="form-label">RADIO</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="radioBudget" name="radio" value={{radio}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="google" class="form-label">GOOGLE</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="googleBudget" name="google" value={{google}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="insta" class="form-label">FB & Insta</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="facebookBudget" name="insta" value={{insta}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="youtube" class="form-label">YOUTUBE</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="youtubeBudget" name="youtube" value={{youtube}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="hoardings" class="form-label">HOARDINGS</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="hoardingsBudget" name="hoardings" value={{hoardings}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td><label for="others" class="form-label">OTHERS</label></td>
+    <td>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">₹</span>
+                </div>
+                <input type="text" class="form-control" id="othersBudget" name="others" value={{others}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+            </div>
+        </div>
+    </td>
+</tr>
+
+            </tbody>
+        </table>
+         <div class="button-container text-right">
+            <button id="calculateButton" class="btn btn-primary">Predict Sales</button> 
+        </div>
+        </form>
+ 
+        {% if prediction %}
+        <div id="output-container" style="padding:15 px">
+        <p class="prediction-text" style="color:red;padding-left:20px">Predicted Sales : ₹{{prediction}} </p>
+        </div>
+
+        <div>
+            <img src="data:image/png;base64,{{ plot_image }}" class="img-fluid" alt="Pie Chart">
+            </div>
+            <div>
+            <img src="data:image/png;base64,{{ line_chart_image }}" class="img-fluid" alt="Line Chart">
+            </div>
+            </div>
+            
+        {% endif %}
+        
+    </div>
+
+    <script>
+        function resetv() 
+        {
+            document.getElementById('tvBudget').value = 0; 
+            document.getElementById('printMediaBudget').value = 0; 
+            document.getElementById('radioBudget').value = 0; 
+            document.getElementById('googleBudget').value = 0; 
+            document.getElementById('facebookBudget').value = 0; 
+            document.getElementById('youtubeBudget').value = 0; 
+            document.getElementById('hoardingsBudget').value = 0; 
+            document.getElementById('othersBudget').value = 0; 
+            var outputcontainer = document.getElementById('output-container');
+            if(outputcontainer)
+            {
+                outputcontainer.remove();
+            }
+        }
+    </script>
+
+</body>
+</html>
+

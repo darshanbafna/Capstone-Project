@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about_style.css') }}">
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <a href="#" class="nav_logo">Fleek</a>
+<ul class="nav_items">
+      <li class="nav_item">
+        <a href="/log" class="nav_link">Home</a>
+        {% if session.loggedin %}
+          <div class="dropdown">
+          <button class="nav_link">Product</button>
+          <div class="dropdown-content">
+            <a href="/front" class="nav_link">Budget</a>
+            <a href="/budget" class="nav_link">Admix</a>
+          </div>
+        </div>
+        {% endif %}
+        <a href="/about" class="nav_link">About Us</a> 
+      </li>
+    </ul>
+     {% if session.loggedin %}
+    <button class="button" id="form-open"><a href="/"  style="color: #333;">Logout</a></button>
+    {% endif %}
+  </nav>
+</header>
+
+    <main class="container mt-4">
+
+        <section id="about-us-section">
+            <h2 class="mb-4">About Us</h2>
+            <p>Welcome to our website! Here, you can learn more about who we are and what we do.</p>
+            <p>Feel free to explore and discover the exciting things we have to offer.</p>
+        </section>
+
+        <section id="authors-section" class="mt-5">
+            <h2 class="mb-4">Meet Our Team</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Author 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Author 1</h5>
+                            <p class="card-text">Some information about Author 1.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Author 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Author 2</h5>
+                            <p class="card-text">Some information about Author 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Author 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Author 3</h5>
+                            <p class="card-text">Some information about Author 3.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Author 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Author 4</h5>
+                            <p class="card-text">Some information about Author 4.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-4">
+        <div class="container">
+            <!-- Your footer content goes here -->
+            <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

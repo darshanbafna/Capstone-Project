@@ -1,0 +1,124 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2E3440;
+    margin: 0;
+    padding: 0;
+    color: #ECEFF4;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #E5E9F0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styles */
+h1 {
+    text-align: center;
+    color: #2E3440;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+.button-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #BF616A;
+    color: #ECEFF4;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+    background-color: #D8DEE9;
+}
+
+/* Prediction text styles */
+.prediction-text {
+    color: black; /* Consider using a more specific selector if necessary */
+}
+
+/* Media Query for Responsive Design */
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #ECEFF4;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #D8DEE9;
+}
+
+.table th {
+    background-color: #2E3440;
+    color: #ECEFF4;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #D8DEE9;
+}
+
+/* Responsive table styles */
+@media only screen and (max-width: 600px) {
+    .table, .table thead, .table tbody, .table th, .table td, .table tr {
+        display: block;
+    }
+
+    .table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+    }
+
+    .table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .table td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    .table td:nth-of-type(1):before {
+        content: "Media Type";
+    }
+
+    .table td:nth-of-type(2):before {
+        content: "Spends";
+    }
+}

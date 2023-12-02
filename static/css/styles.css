@@ -1,0 +1,80 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2E3440; /* Nord background color */
+    margin: 0;
+    padding: 0;
+    color: #ECEFF4; /* Nord text color */
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #E5E9F0; /* Teal background color */
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styles */
+h1 {
+    text-align: center;
+    color: #2E3440; /* Nord background color */
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #D8DEE9; /* Nord border color */
+}
+
+.table th {
+    background-color: #3B4252; /* Nord header background color */
+    color: #ECEFF4; /* Nord text color */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #E5E9F0; /* Teal background color */
+}
+
+.table tbody tr:hover {
+    background-color: #81A1C1; /* Lighter teal color on hover */
+}
+
+/* Button styles */
+.button-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #BF616A; /* Button background color */
+    color: #ECEFF4; /* Button text color */
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+    background-color: #D8DEE9; /* Button background color on hover */
+}
+
+/* Prediction text style */
+.prediction-text {
+    color: black;
+}
+
+.nordic-label {
+    color: #ECEFF4; /* Nordic text color */
+    font-size: 18px; /* Adjust the font size as needed */
+}
