@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/budget_style.css') }}">
+    <title>Media Spends Predictor</title>
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="/log" class="btn btn-primary" id="calculateButton">Home</a>
+            <h1 class="text-center flex-grow-1">Media Spends Predictor</h1>
+        </div>
+
+        <form action="/predict1" method="post">
+            <div class="form-group">
+                <label for="advertiser" style="color:black">Select Advertiser:</label>
+                <select class="form-control select2" id="advertisers" name="advertiser" onchange="resetv()">
+                    {% for i in advertisers %}
+                        <option value="{{ i }}" {% if i == advertiser %} selected {% endif %}>{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="budget" style="color:black">Enter Budget:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">₹</span>
+                    </div>
+                <input type="text" class="form-control" id="budget" name="budget" value={{budget}} pattern="^\d+(\.\d+)?$" title="Please enter a valid number" required>
+                </div>
+            </div>
+            <div class="button-container text-right">
+                <button id="predict" class="btn btn-primary">Predict Spends</button>
+            </div>
+        </form>
+
+        {% if advertiser %}
+        
+        <div id="output-container">
+
+        <div>
+            <p class="prediction-text">Advertiser : {{ advertiser }}</p>
+            <p class="prediction-text">Best way to Spend for your Budget</p>
+        </div>
+
+        <div class="table-container mt-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Media Type</th>
+                        <th>Spends</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if Tv_value %}
+                    <tr>
+                        <td>TV</td>
+                        <td> ₹{{ Tv_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Media_value %}
+                    <tr>
+                        <td>Print</td>
+                        <td> ₹{{ Media_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Radio_value %}
+                    <tr>
+                        <td>Radio</td>
+                        <td> ₹{{ Radio_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Google_value %}
+                    <tr>
+                        <td>Google ADs</td>
+                        <td> ₹{{ Google_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Insta_value %}
+                    <tr>
+                        <td>FB and Insta</td>
+                        <td> ₹{{ Insta_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Youtube_value %}
+                    <tr>
+                        <td>Youtube</td>
+                        <td> ₹{{ Youtube_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Hoardings_value %}
+                    <tr>
+                        <td>Hoardings</td>
+                        <td> ₹{{ Hoardings_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Others_value %}
+                    <tr>
+                        <td>Other</td>
+                        <td> ₹{{ Others_value }} </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if Sales %}
+                    <tr>
+                        <td> Predicted Sales </td>
+                        <td> ₹{{ Sales }}</td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+        <img src="data:image/png;base64,{{ plot_image }}" class="img-fluid" alt="Pie Chart">
+        </div>
+        <div>
+        <img src="data:image/png;base64,{{ line_chart_image }}" class="img-fluid" alt="Line Chart">
+        </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function resetv() 
+        {
+            document.getElementById('budget').value = 0; 
+            var outputcontainer = document.getElementById('output-container');
+            if(outputcontainer)
+            {
+                outputcontainer.remove();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+

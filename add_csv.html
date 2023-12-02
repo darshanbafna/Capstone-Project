@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/budget_style.css') }}">
+    <title>Upload Advertiser Data</title>
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="/log" class="btn btn-primary" id="calculateButton">Home</a>
+            <h1 class="text-center flex-grow-1">Upload Advertiser Data</h1>
+        </div>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="csv_upload" style="color:black">Upload CSV:</label>
+                <input type="file" class="form-control" name="csv_file" accept=".csv" required>
+            </div>
+            <div class="button-container text-right">
+                <button id="predict" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
